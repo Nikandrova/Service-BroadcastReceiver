@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                     registerReceiver();
 
                     intentService = new Intent(getApplicationContext(), MyService.class);
-                   // startService(intentService);
                     bindService(intentService, serviceConnection, Context.BIND_AUTO_CREATE);
                 }
             }

@@ -46,27 +46,6 @@ public class MyService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        mSheduledExecutorService = Executors.newScheduledThreadPool(1);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
-        mSheduledExecutorService.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.ProgressReceiver.SIMPLE_ACTION);
-                intent.putExtra(INCREASE_PROGRESS, increaseValue());
-                sendBroadcast(intent);
-            }
-        }, 1000, 2000, TimeUnit.MILLISECONDS);
-
-        return START_STICKY;
-    }
-
-    @Override
     public void onDestroy() {
         mSheduledExecutorService.shutdownNow();
         Log.d(TAG, "onDestroy MyService");
